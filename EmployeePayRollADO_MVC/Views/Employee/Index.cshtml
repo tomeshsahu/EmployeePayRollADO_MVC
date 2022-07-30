@@ -1,0 +1,80 @@
+﻿@model IEnumerable<DatabaseLayer.EmployeeModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="heading">
+    <img src="~/Assets/bridgelabz.png" style="width:100px;height:100px" />
+</div>
+
+<p>
+    <a asp-action="AddEmployee" class="btn btn-primary ml-auto">Add Employee</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr style="font-weight:25px;">
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpName)
+            </td>
+            <td >
+                 <img src="@Url.Content(item.PImage)"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dept)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary )/-
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "UpdateEmployee", new { id = item.EmpId }, new { @class = "btn btn-success btn-sm" }) |
+                @Html.ActionLink("Details", "GetEmployeeData", new { id = item.EmpId }, new { @class = "btn btn-info btn-sm" }) |
+                @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.EmpId }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
